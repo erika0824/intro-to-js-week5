@@ -19,7 +19,7 @@ class Book {
 class Genre {
     constructor(genre) {
         this.genre = genre;
-        this.books = []; ///not sure what to call this?
+        this.books = []; 
     }
     createBook(book) {
         if(book instanceof Book) {
@@ -107,11 +107,12 @@ class Menu {
             this.selectedGenre = this.genres[genreIndex];
     
             let description = 'Genre: ' + this.selectedGenre.genre + '\n';
-    
+            console.log(this.selectedGenre);
             for(let i = 0; i < this.selectedGenre.books.length; i++) {
                 description += i + ' - ' + this.selectedGenre.books[i].title
                 + ' | ' + this.selectedGenre.books[i].author + '\n';
             }
+
             let selection = this.showGenreMenuOptions(description);
             switch(selection) {
                 case '1':
@@ -120,18 +121,23 @@ class Menu {
                 case '2':
                     this.deleteBook();
                 }
-                selection = this.showGenreMenuOptions(description);
             }
         }
-        addBook() {
-            let title = prompt('Add the title of the book you want to add:');
-            let author = promp('Add the author of this book:');
-            this.selectedGenre.genres.push(new Book(title, author));
-        }
-        deleteBook() {
-            index = prompt('Enter the index of the book you would like to delete:');
-            if(index > -1 && index < this.selectedGenre.genres.length) {
-                this.selectedGenre.genres.splice(index, 1);
+
+    addBook() {
+        let title = prompt('Add the title of the book you want to add:');
+        let author = prompt('Add the author of this book:');
+        console.log(this.selectedGenre);
+        
+        this.selectedGenre.books.push(new Book(title, author));
+    }
+        
+        
+
+    deleteBook() {
+        index = prompt('Enter the index of the book you would like to delete:');
+        if(index > -1 && index < this.selectedGenre.genres.length) {
+        this.selectedGenre.books.splice(index, 1);
             }
         }
     }
